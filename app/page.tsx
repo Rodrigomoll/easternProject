@@ -8,15 +8,17 @@ export default function Home() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry, index) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setTimeout(() => {
-              entry.target.classList.add("line-visible");
-            }, index * 180);
+            entry.target.classList.add("line-visible");
+          } else {
+            entry.target.classList.remove("line-visible");
           }
         });
       },
-      { threshold: 0.35 }
+      {
+        threshold: 0.25,
+      }
     );
 
     lineRefs.current.forEach((line) => {
@@ -27,47 +29,54 @@ export default function Home() {
   }, []);
 
   const lines = [
-    "CHRIST IS",
-    "THE RISEN HOPE",
-    "OF EASTER AND",
-    "THE LIGHT OF",
-    "EVERY SOUL",
+    { text: "CHRIST IS", color: "text-[#C08497]" },
+    { text: "THE RISEN HOPE", color: "text-[#A78BFA]" },
+    { text: "OF EASTER AND", color: "text-[#7DD3C7]" },
+    { text: "THE LIGHT OF", color: "text-[#F9A8D4]" },
+    { text: "EVERY SOUL", color: "text-[#F4B183]" },
   ];
 
   return (
-    <main className="min-h-screen bg-[#FFF9F4] text-[#5B4B5A]">
-      <section className="mx-auto flex min-h-screen max-w-[1600px] flex-col px-4 py-5 sm:px-8 lg:px-10">
-        <div className="mb-10 flex items-center justify-between text-[18px] font-semibold tracking-tight sm:text-[22px]">
-          <p>CSS 220 Studio</p>
+    <main className="min-h-screen bg-gradient-to-b from-[#EAF4FF] to-[#FDF6FF] text-[#4B3F52]">
+      <section className="mx-auto flex min-h-screen max-w-[1400px] flex-col px-6 py-8">
+        
+        {/* TOP BAR */}
+        <div className="mb-10 flex items-center justify-between text-[16px] font-semibold sm:text-[18px]">
+          <p>Juliana Studio</p>
           <p>Easter • Hope • Light</p>
         </div>
 
+        {/* MAIN CONTENT */}
         <div className="flex flex-1 flex-col justify-center">
-          <div className="mb-12 space-y-0 text-center leading-[0.9] tracking-[-0.04em] text-[#7E6B7C]">
+          
+          {/* TITLE */}
+          <div className="mb-12 space-y-1 text-center leading-[0.95] tracking-[-0.04em]">
             {lines.map((line, i) => (
-              <div key={line} className="overflow-hidden">
+              <div key={line.text} className="overflow-hidden">
                 <div
                   ref={(el) => {
                     lineRefs.current[i] = el;
                   }}
-                  className="title-line text-[17vw] font-black uppercase sm:text-[14vw] lg:text-[9rem] xl:text-[10rem]"
+                  className={`title-line ${line.color} text-[11vw] font-black uppercase sm:text-[8vw] lg:text-[5rem] xl:text-[6rem]`}
+                  style={{ transitionDelay: `${i * 120}ms` }}
                 >
-                  {line}
+                  {line.text}
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="grid grid-cols-1 gap-10 pb-8 text-[#6B5D6A] sm:grid-cols-2 lg:grid-cols-4">
+          {/* CONTENT GRID */}
+          <div className="grid grid-cols-1 gap-10 pb-8 text-[#5F5565] sm:grid-cols-2 lg:grid-cols-4">
+            
             <div>
-              <p className="max-w-sm text-[20px] leading-[1.2] sm:text-[26px]">
-                Easter reminds us that through Jesus Christ, sorrow is not the
-                end, darkness does not win, and every life can begin again in
-                Him.
+              <p className="max-w-sm text-[18px] leading-[1.3] sm:text-[22px]">
+                Easter reminds us that through Jesus Christ, darkness does not
+                win, sorrow is not the end, and every life can begin again in Him.
               </p>
             </div>
 
-            <div className="space-y-1 text-[20px] sm:text-[26px]">
+            <div className="space-y-1 text-[18px] sm:text-[22px]">
               <p>Resurrection</p>
               <p>Grace</p>
               <p>Redemption</p>
@@ -76,7 +85,7 @@ export default function Home() {
               <p>New Life</p>
             </div>
 
-            <div className="space-y-1 text-[20px] sm:text-[26px]">
+            <div className="space-y-1 text-[18px] sm:text-[22px]">
               <p>He Lives</p>
               <p>He Knows Us</p>
               <p>He Strengthens</p>
@@ -85,7 +94,7 @@ export default function Home() {
               <p>And More...</p>
             </div>
 
-            <div className="space-y-1 text-[20px] sm:text-[26px]">
+            <div className="space-y-1 text-[18px] sm:text-[22px]">
               <p>John 11:25</p>
               <p>Luke 24</p>
               <p>3 Nephi 11</p>
@@ -93,21 +102,24 @@ export default function Home() {
               <p>D&amp;C 76</p>
               <p>Come Unto Christ</p>
             </div>
+
           </div>
 
-          <div className="pt-6 text-[28px] font-medium text-[#8D7990] sm:text-[34px]">
+          {/* SCROLL TEXT */}
+          <div className="pt-6 text-[22px] font-medium text-[#8D7990] sm:text-[26px]">
             Scroll
           </div>
+
         </div>
       </section>
 
+      {/* ANIMATION STYLES */}
       <style jsx>{`
         .title-line {
           transform: translateY(120%);
           opacity: 0;
-          transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1),
-            opacity 0.9s ease;
-          will-change: transform, opacity;
+          transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+            opacity 0.8s ease;
         }
 
         .line-visible {
