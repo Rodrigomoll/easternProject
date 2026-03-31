@@ -33,6 +33,16 @@ export default function Home() {
             </a>{" "}
             center.
           </p>
+          <Image
+            src="/jesus_nephites.jpeg"
+            alt="Jesus Christ appearing to the Nephites"
+            width={300}
+            height={400}
+            className="rounded-lg"
+          />
+          <p className="max-w-md text-base leading-7 text-zinc-700 dark:text-zinc-300 italic border-l-4 pl-4">
+            "Behold, I am Jesus Christ, whom the prophets testified shall come into the world. And behold, I am the light and the life of the world;... Arise and come forth unto me, that ye may thrust your hands into my side, and also that ye may feel the prints of the nails in my hands and in my feet, that ye may know that I am the God of Israel, and the God of the whole earth, and have been slain for the sins of the world. (3 Nephi 11:10–11, 14)"
+          </p>
         </div>
         <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
           <a
