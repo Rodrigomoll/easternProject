@@ -1,65 +1,120 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect, useRef } from "react";
 
 export default function Home() {
+  const lineRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add("line-visible");
+            }, index * 180);
+          }
+        });
+      },
+      { threshold: 0.35 }
+    );
+
+    lineRefs.current.forEach((line) => {
+      if (line) observer.observe(line);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const lines = [
+    "CHRIST IS",
+    "THE RISEN HOPE",
+    "OF EASTER AND",
+    "THE LIGHT OF",
+    "EVERY SOUL",
+  ];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen bg-[#FFF9F4] text-[#5B4B5A]">
+      <section className="mx-auto flex min-h-screen max-w-[1600px] flex-col px-4 py-5 sm:px-8 lg:px-10">
+        <div className="mb-10 flex items-center justify-between text-[18px] font-semibold tracking-tight sm:text-[22px]">
+          <p>CSS 220 Studio</p>
+          <p>Easter • Hope • Light</p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="flex flex-1 flex-col justify-center">
+          <div className="mb-12 space-y-0 text-center leading-[0.9] tracking-[-0.04em] text-[#7E6B7C]">
+            {lines.map((line, i) => (
+              <div key={line} className="overflow-hidden">
+                <div
+                  ref={(el) => {
+                    lineRefs.current[i] = el;
+                  }}
+                  className="title-line text-[17vw] font-black uppercase sm:text-[14vw] lg:text-[9rem] xl:text-[10rem]"
+                >
+                  {line}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 gap-10 pb-8 text-[#6B5D6A] sm:grid-cols-2 lg:grid-cols-4">
+            <div>
+              <p className="max-w-sm text-[20px] leading-[1.2] sm:text-[26px]">
+                Easter reminds us that through Jesus Christ, sorrow is not the
+                end, darkness does not win, and every life can begin again in
+                Him.
+              </p>
+            </div>
+
+            <div className="space-y-1 text-[20px] sm:text-[26px]">
+              <p>Resurrection</p>
+              <p>Grace</p>
+              <p>Redemption</p>
+              <p>Peace</p>
+              <p>Faith in Christ</p>
+              <p>New Life</p>
+            </div>
+
+            <div className="space-y-1 text-[20px] sm:text-[26px]">
+              <p>He Lives</p>
+              <p>He Knows Us</p>
+              <p>He Strengthens</p>
+              <p>He Heals</p>
+              <p>He Restores</p>
+              <p>And More...</p>
+            </div>
+
+            <div className="space-y-1 text-[20px] sm:text-[26px]">
+              <p>John 11:25</p>
+              <p>Luke 24</p>
+              <p>3 Nephi 11</p>
+              <p>Alma 7:11–13</p>
+              <p>D&amp;C 76</p>
+              <p>Come Unto Christ</p>
+            </div>
+          </div>
+
+          <div className="pt-6 text-[28px] font-medium text-[#8D7990] sm:text-[34px]">
+            Scroll
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <style jsx>{`
+        .title-line {
+          transform: translateY(120%);
+          opacity: 0;
+          transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+            opacity 0.9s ease;
+          will-change: transform, opacity;
+        }
+
+        .line-visible {
+          transform: translateY(0%);
+          opacity: 1;
+        }
+      `}</style>
+    </main>
   );
 }
