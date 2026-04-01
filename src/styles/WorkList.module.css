@@ -13,17 +13,30 @@
   position: relative;
 }
 
+.mainImage {
+  position: absolute;
+  object-fit: cover;
+  transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  cursor: pointer;
+}
+
+.rollingText {
+  transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.absoluteText {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+}
+
 .imageWrapper {
   position: relative;
   height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: transparent;
-}
-
-.textWrapper {
-  z-index: 5;
 }
 
 .indexNumber {
@@ -35,9 +48,9 @@
 
 .titleContainer {
   position: relative;
-  height: 1.2em;
+  height: 1.1em;
   overflow: hidden;
-  font-size: clamp(30px, 5vw, 70px);
+  font-size: clamp(20px, 3vw, 40px);
   font-weight: 700;
   text-transform: uppercase;
   line-height: 1;
