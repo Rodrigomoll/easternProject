@@ -1,0 +1,44 @@
+.container {
+  background-color: #f4f3ed;
+  color: #171717;
+  min-height: 100vh;
+}
+
+.section {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  border-top: 1px solid #171717;
+  padding: 120px 20px;
+  align-items: center;
+  position: relative;
+}
+
+.imageWrapper {
+  position: relative;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+}
+
+.textWrapper {
+  z-index: 5;
+}
+
+.indexNumber {
+  font-size: 14px;
+  margin-bottom: 15px;
+  opacity: 0.5;
+  font-weight: 500;
+}
+
+.titleContainer {
+  position: relative;
+  height: 1.2em;
+  overflow: hidden;
+  font-size: clamp(30px, 5vw, 70px);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1;
+}
