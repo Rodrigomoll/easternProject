@@ -8,27 +8,9 @@
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   border-top: 1px solid #171717;
-  padding: 120px 20px;
+  padding: 80px 20px; 
   align-items: center;
   position: relative;
-}
-
-.mainImage {
-  position: absolute;
-  object-fit: cover;
-  transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
-  cursor: pointer;
-}
-
-.rollingText {
-  transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
-}
-
-.absoluteText {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
 }
 
 .imageWrapper {
@@ -37,6 +19,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.mainImage {
+  position: absolute;
+  object-fit: cover;
+  transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  cursor: pointer;
+  max-width: 120%; 
 }
 
 .indexNumber {
@@ -48,10 +38,21 @@
 
 .titleContainer {
   position: relative;
-  height: 1.1em;
+  height: 1.2em;
   overflow: hidden;
-  font-size: clamp(20px, 3vw, 40px);
+  font-size: clamp(20px, 3vw, 36px); 
   font-weight: 700;
   text-transform: uppercase;
   line-height: 1;
+}
+
+.rollingText {
+  transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.absoluteText {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
 }
