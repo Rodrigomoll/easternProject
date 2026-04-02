@@ -1,6 +1,9 @@
+"use client"; 
 import PalmSundaySection from './components/PalmSundaySection'
 
-export default function Home() {
+import WorkList from "../src/components/WorkList";
+
+export default function Page() {
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
@@ -126,6 +129,7 @@ export default function Home() {
           This portfolio reflects meaningful moments from Easter week and the
           life of Jesus Christ.
         </p>
+        <WorkList />
       </section>
 
       <PalmSundaySection />
