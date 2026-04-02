@@ -42,7 +42,7 @@ export default function Home() {
           
           {/* HEADER */}
           <div className="mb-10 flex items-center justify-between text-[15px] font-semibold uppercase tracking-[0.18em] text-[#7E7284]">
-            <p>Juliana Studio</p>
+            <p>Studio</p>
             <p>Easter • Hope • Light</p>
           </div>
 
