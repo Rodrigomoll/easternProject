@@ -1,35 +1,30 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
-  const lineRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const heroRef = useRef<HTMLElement | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("line-visible");
-          } else {
-            entry.target.classList.remove("line-visible");
-          }
-        });
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+        }
       },
       {
-        threshold: 0.35,
-        rootMargin: "0px 0px -8% 0px",
+        threshold: 0.2,
       }
     );
 
-    lineRefs.current.forEach((line) => {
-      if (line) observer.observe(line);
-    });
+    if (heroRef.current) observer.observe(heroRef.current);
 
     return () => observer.disconnect();
   }, []);
-
-  const lines = [
+const lines = [
     { text: "CHRIST IS", color: "text-[#C88AA0]" },
     { text: "THE RISEN HOPE", color: "text-[#9B8AE8]" },
     { text: "OF EASTER AND", color: "text-[#7FCFC3]" },
@@ -39,7 +34,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#DFF1FF] via-[#F8F4FF] to-[#FFF9F4] text-[#4B3F52]">
-      <section className="relative overflow-hidden">
+      <section ref={heroRef} className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute left-[8%] top-[10%] h-48 w-48 rounded-full bg-[#F8CFE1]/40 blur-3xl" />
           <div className="absolute right-[10%] top-[18%] h-56 w-56 rounded-full bg-[#CFE8FF]/70 blur-3xl" />
@@ -57,10 +52,9 @@ export default function Home() {
               {lines.map((line, i) => (
                 <div key={line.text} className="overflow-hidden">
                   <div
-                    ref={(el) => {
-                      lineRefs.current[i] = el;
-                    }}
-                    className={`title-line ${line.color} text-[11vw] font-black uppercase sm:text-[8vw] lg:text-[5.5rem] xl:text-[6.5rem]`}
+                    className={`title-line ${isVisible ? "line-visible" : ""} ${
+                      line.color
+                    } text-[11vw] font-black uppercase sm:text-[8vw] lg:text-[5.5rem] xl:text-[6.5rem]`}
                     style={{ transitionDelay: `${i * 120}ms` }}
                   >
                     {line.text}
