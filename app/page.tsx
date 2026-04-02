@@ -1,6 +1,6 @@
 "use client"; 
 import PalmSundaySection from './components/PalmSundaySection'
-
+import Image from "next/image";
 import WorkList from "../src/components/WorkList";
 
 export default function Page() {
@@ -79,9 +79,7 @@ export default function Page() {
           </a>
         </div>
       </main>
-    </div>
-  );
-}
+    
     <main
       style={{
         backgroundColor: '#f8f5f0',
@@ -134,5 +132,6 @@ export default function Page() {
 
       <PalmSundaySection />
     </main>
+    </div>
   )
 }
